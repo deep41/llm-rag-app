@@ -1,0 +1,7 @@
+ollama
+langchain
+langchain-community
+langchain-core
+pypdf
+docarray
+pydantic==1.10.8

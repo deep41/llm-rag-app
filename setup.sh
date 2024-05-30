@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 apt update && apt upgrade
 apt install python3 python3-pip jupyter python3-venv -y
 
@@ -21,7 +21,9 @@ else
   echo "File '$INSTALL_LOC' already exists."
 fi
 
-pip install ollama
+source ./venv/bin/activate
+
+pip install -r requirements.txt
 
 ollama pull llama3
-ollama pull llama3:70b
+# ollama pull llama3:70b
