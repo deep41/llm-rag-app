@@ -1,5 +1,5 @@
 #!/bin/bash
-apt update && apt upgrade
+apt update && apt upgrade -y
 apt install python3 python3-pip jupyter python3-venv -y
 
 FOLDER="venv"
@@ -20,10 +20,6 @@ if [ ! -e "$INSTALL_LOC" ]; then
 else
   echo "File '$INSTALL_LOC' already exists."
 fi
-
-source ./venv/bin/activate
-
-pip install -r requirements.txt
 
 ollama pull llama3
 # ollama pull llama3:70b
