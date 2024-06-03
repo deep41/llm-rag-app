@@ -2,6 +2,9 @@
 apt update && apt upgrade -y
 apt install python3 python3-pip jupyter python3-venv -y
 
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+nvm install 22
+
 FOLDER="venv"
 
 if [ ! -d "$FOLDER" ]; then
