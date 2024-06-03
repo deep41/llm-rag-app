@@ -21,5 +21,6 @@ else
   echo "File '$INSTALL_LOC' already exists."
 fi
 
-ollama pull llama3
+sleep 1
+ollama pull llama2
 # ollama pull llama3:70b
