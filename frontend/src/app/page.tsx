@@ -1,9 +1,9 @@
-import MessagesComponent from "../components/MessagesComponent";
+import ChatLayout from "./layout/ChatLayout";
 
 const Home = () => {
   return (
     <main>
-      <MessagesComponent />
+      <ChatLayout />
     </main>
   );
 };
