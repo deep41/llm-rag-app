@@ -45,7 +45,7 @@ const ChatLayout: React.FC = () => {
         <div
           className={`${
             isSidebarOpen ? "block" : "hidden"
-          } md:block relative bg-blue-50`}
+          } md:block relative bg-gray-100`}
           style={{ width: `${sidebarWidth}px` }}
         >
           <ChatSideBar />
