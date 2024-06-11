@@ -3,59 +3,39 @@ import React, { useState } from "react";
 import Header from "@/components/Header";
 import ChatSideBar from "@/components/chat/ChatSideBar";
 import ChatView from "@/components/chat/ChatView";
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "@/components/ui/resizable";
 
 const ChatLayout: React.FC = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [sidebarWidth, setSidebarWidth] = useState(350);
-
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
-
-  const handleMouseDown = (e: React.MouseEvent) => {
-    const startX = e.clientX;
-    const startWidth = sidebarWidth;
-
-    const onMouseMove = (e: MouseEvent) => {
-      const newWidth = startWidth + e.clientX - startX;
-      if (newWidth >= 200 && newWidth <= 600) {
-        setSidebarWidth(newWidth);
-      }
-    };
-
-    const onMouseUp = () => {
-      document.removeEventListener("mousemove", onMouseMove);
-      document.removeEventListener("mouseup", onMouseUp);
-    };
-
-    document.addEventListener("mousemove", onMouseMove);
-    document.addEventListener("mouseup", onMouseUp);
-  };
+  const defaultSize = 24;
+  const maxSize = 36;
+  const minSize = 14;
 
   return (
     <div className="flex h-screen flex-col">
       <Header />
-      <div className="flex flex-grow flex-row">
-        <button
-          className="m-2 rounded bg-blue-500 p-2 text-white md:hidden"
-          onClick={toggleSidebar}
-        >
-          {isSidebarOpen ? "Close Sidebar" : "Open Sidebar"}
-        </button>
-        <div
-          className={`${
-            isSidebarOpen ? "block" : "hidden"
-          } relative bg-gray-100 md:block`}
-          style={{ width: `${sidebarWidth}px` }}
+      <ResizablePanelGroup direction="horizontal">
+        <ResizablePanel
+          defaultSize={defaultSize}
+          maxSize={maxSize}
+          minSize={minSize}
+          className=""
         >
           <ChatSideBar />
-          <div
-            className="absolute bottom-0 right-0 top-0 hidden w-0.5 cursor-ew-resize bg-black/20 md:block"
-            onMouseDown={handleMouseDown}
-          />
-        </div>
-        <ChatView />
-      </div>
+        </ResizablePanel>
+        <ResizableHandle className="w-[0.5px] cursor-ew-resize bg-black/60" />
+        <ResizablePanel
+          className="flex"
+          defaultSize={100 - defaultSize}
+          maxSize={100 - minSize}
+          minSize={100 - maxSize}
+        >
+          <ChatView />
+        </ResizablePanel>
+      </ResizablePanelGroup>
     </div>
   );
 };
