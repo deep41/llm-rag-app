@@ -39,5 +39,5 @@ def read_root():
 @app.get("/chat")
 def tester(message: str):
     print(message)
-    reply = chain.invoke({"question": message, "context": "You are a bot who is helpful for picking furniture"})
+    reply = chain.invoke({"question": message, "context": "You are a helpful chat bot, help the user as much as possible"})
     return {"content": reply}
