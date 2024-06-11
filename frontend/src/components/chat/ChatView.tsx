@@ -14,7 +14,7 @@ const ChatView: React.FC = () => {
         type: "system",
         content: `| Header 1 | Header 2 |\n| ------- | ------- |\n| Cell 1  | Cell 2  |\n| Cell 3  | Cell 4  |`,
       },
-    ]
+    ],
   );
   const [inputValue, setInputValue] = useState("");
 
@@ -34,7 +34,7 @@ const ChatView: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col w-full bg-white">
+    <div className="flex w-full flex-col bg-white">
       <div className="flex-1 overflow-y-auto p-4">
         {messages.map((message, index) => (
           <ChatBubble
@@ -44,17 +44,17 @@ const ChatView: React.FC = () => {
           />
         ))}
       </div>
-      <div className="flex items-center p-4 border-t border-gray-20">
+      <div className="border-gray-20 flex items-center border-t p-4">
         <input
           type="text"
-          className="flex-1 border border-gray-300 rounded-lg p-2 mr-2"
+          className="mr-2 flex-1 rounded-lg border border-gray-300 p-2"
           placeholder="Type a message..."
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
         />
         <button
           onClick={handlePostMessage}
-          className="bg-blue-500 text-white p-2 rounded-lg"
+          className="rounded-lg bg-blue-500 p-2 text-white"
         >
           Post
         </button>

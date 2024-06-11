@@ -33,11 +33,11 @@ const ChatLayout: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex h-screen flex-col">
       <Header />
       <div className="flex flex-grow flex-row">
         <button
-          className="md:hidden p-2 m-2 bg-blue-500 text-white rounded"
+          className="m-2 rounded bg-blue-500 p-2 text-white md:hidden"
           onClick={toggleSidebar}
         >
           {isSidebarOpen ? "Close Sidebar" : "Open Sidebar"}
@@ -45,12 +45,12 @@ const ChatLayout: React.FC = () => {
         <div
           className={`${
             isSidebarOpen ? "block" : "hidden"
-          } md:block relative bg-gray-100`}
+          } relative bg-gray-100 md:block`}
           style={{ width: `${sidebarWidth}px` }}
         >
           <ChatSideBar />
           <div
-            className="absolute top-0 right-0 bottom-0 w-0.5 bg-black/20 cursor-ew-resize md:block hidden"
+            className="absolute bottom-0 right-0 top-0 hidden w-0.5 cursor-ew-resize bg-black/20 md:block"
             onMouseDown={handleMouseDown}
           />
         </div>

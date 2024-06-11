@@ -11,10 +11,10 @@ interface ChatBubbleProps {
 const ChatBubble: React.FC<ChatBubbleProps> = ({ type, content }) => {
   return (
     <div
-      className={`mb-4 p-2 rounded-lg max-w-xs ${
+      className={`mb-4 max-w-xs rounded-lg p-2 ${
         type === "self"
-          ? "bg-blue-500 text-white self-end ml-auto"
-          : "bg-gray-300 text-black self-start mr-auto"
+          ? "ml-auto self-end bg-blue-500 text-white"
+          : "mr-auto self-start bg-gray-300 text-black"
       }`}
     >
       <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
