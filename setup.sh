@@ -1,6 +1,6 @@
 #!/bin/bash
 apt update && apt upgrade -y
-apt install python3 python3-pip jupyter python3-venv -y
+apt install python3 python3-pip jupyter python3-venv uvicorn -y
 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 nvm install 22
