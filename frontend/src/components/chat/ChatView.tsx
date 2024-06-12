@@ -18,7 +18,7 @@ const ChatView: React.FC = () => {
   );
   const [inputValue, setInputValue] = useState("");
 
-  const handlePostMessage = () => {
+  const handlePostMessage = async () => {
     try {
       // Validate input
       const parsed = messageSchema.parse({ content: inputValue });
@@ -26,6 +26,28 @@ const ChatView: React.FC = () => {
       setMessages([...messages, { type: "self", content: parsed.content }]);
       // Clear the input field
       setInputValue("");
+
+      // Send the message to the server
+      const apiURL = `/api/chatty?message=${parsed.content}`;
+      const messageResponse = await fetch(apiURL, { cache: "no-cache" });
+      const content = await messageResponse.json();
+      console.log(content);
+
+      setMessages([
+        ...messages,
+        { type: "self", content: parsed.content },
+        { type: "system", content: content.content },
+      ]);
+
+      // messageResponse.then((response) => {
+      //   if (response.ok) {
+      //     response.json().then((data) => {
+      //       setMessages([...messages, { type: "system", content: data }]);
+      //     });
+      //   } else {
+      //     console.error("Error sending message:", response.statusText);
+      //   }
+      // });
     } catch (error) {
       if (error instanceof z.ZodError) {
         alert(error.errors.map((e) => e.message).join(", "));
@@ -51,6 +73,7 @@ const ChatView: React.FC = () => {
           placeholder="Type a message..."
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
+          onSubmit={handlePostMessage}
         />
         <button
           onClick={handlePostMessage}

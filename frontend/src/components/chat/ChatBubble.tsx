@@ -11,7 +11,7 @@ interface ChatBubbleProps {
 const ChatBubble: React.FC<ChatBubbleProps> = ({ type, content }) => {
   return (
     <div
-      className={`mb-4 max-w-xs rounded-lg p-2 ${
+      className={`mb-4 max-w-4xl rounded-lg p-4 ${
         type === "self"
           ? "ml-auto self-end bg-blue-500 text-white"
           : "mr-auto self-start bg-gray-300 text-black"
